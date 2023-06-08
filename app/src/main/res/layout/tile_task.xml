@@ -19,10 +19,17 @@
         android:text="@string/description_tile_task" />
 
     <TextView
-        android:id="@+id/conclusionDateTv"
+        android:id="@+id/expectedConclusionDateTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/expected_conclusion_date_tile_task" />
+
+    <TextView
+        android:id="@+id/conclusionDateTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/conclusion_date_tile_task" />
 
     <TextView
         android:id="@+id/completedTv"

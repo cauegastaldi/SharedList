@@ -16,7 +16,9 @@ import br.edu.ifsp.sharedlist.adapter.TaskRvAdapter
 import br.edu.ifsp.sharedlist.controller.TaskController
 import br.edu.ifsp.sharedlist.databinding.ActivityMainBinding
 import br.edu.ifsp.sharedlist.model.Task
+import br.edu.ifsp.sharedlist.utils.DateConverter
 import com.google.firebase.auth.FirebaseAuth
+import java.time.LocalDate
 
 class MainActivity : BaseActivity(), OnTaskClickListener {
     private val amb: ActivityMainBinding by lazy {
@@ -137,6 +139,7 @@ class MainActivity : BaseActivity(), OnTaskClickListener {
         val task = taskList[position]
         task.isCompleted = true
         task.userWhoCompleted = FirebaseAuth.getInstance().currentUser!!.email
+        task.conclusionDate = DateConverter.convertLocalDateToDateInBrazilianFormat(LocalDate.now())
         taskController.editTask(task)
         taskList[position] = task
         taskAdapter.notifyDataSetChanged()

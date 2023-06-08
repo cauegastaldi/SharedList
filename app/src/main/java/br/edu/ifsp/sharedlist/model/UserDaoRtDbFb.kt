@@ -1,14 +1,11 @@
 package br.edu.ifsp.sharedlist.model
 
-import android.util.Log
 import br.edu.ifsp.sharedlist.view.LoginActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import kotlin.reflect.typeOf
 
 class UserDaoRtDbFb(private val loginActivity: LoginActivity) {
 
