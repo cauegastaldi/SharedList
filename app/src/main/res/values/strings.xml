@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SharedList</string>
+    <string name="title">Título</string>
+    <string name="description">Descrição</string>
+    <string name="description_tile_task">Descrição: %s</string>
+    <string name="expected_conclusion_date">Data de conclusão esperada</string>
+    <string name="conclusion_date">Data de conclusão</string>
+    <string name="expected_conclusion_date_tile_task">Data de conclusão esperada: %s</string>
+    <string name="conclusion_date_tile_task">Data de conclusão: %s</string>
+    <string name="task_list">Lista de Tarefas</string>
+    <string name="add_task">Adicionar Tarefa</string>
+    <string name="remove_task">Remover Tarefa</string>
+    <string name="edit_task">Editar Tarefa</string>
+    <string name="save">Salvar</string>
+    <string name="task_info">Informações da Tarefa</string>
+    <string name="completed">Completada: %s</string>
+    <string name="user_who_created_the_task">Usuário que criou</string>
+    <string name="creation_date">Data de criação</string>
+    <string name="user_who_completed_the_task">Usuário que completou</string>
+    <string name="complete_task">Completar Tarefa</string>
+</resources>

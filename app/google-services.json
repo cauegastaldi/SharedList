@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "444165348391",
+    "firebase_url": "https://sharedlistbackend-default-rtdb.firebaseio.com",
+    "project_id": "sharedlistbackend",
+    "storage_bucket": "sharedlistbackend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444165348391:android:25bc4c333d8b09cb598202",
+        "android_client_info": {
+          "package_name": "br.edu.ifsp.sharedlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444165348391-f8a3i0nc89ma1bveih1oe0d9ov0c4p9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.ifsp.sharedlist",
+            "certificate_hash": "a290a797aea87bbafa04e53e640e26a88eb1adaa"
+          }
+        },
+        {
+          "client_id": "444165348391-lm2snafmq1ptnu41c37mhrin9cisd0qo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.ifsp.sharedlist",
+            "certificate_hash": "62097dda5d9a5724304f0796f2b52ccfeef449a8"
+          }
+        },
+        {
+          "client_id": "444165348391-hctegot47k815r2s1hg6j5k4ms9on27q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRfRG1-C0OHVLQg4-yIu6Ppk15pGBt5j8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444165348391-e50nmmh77cujjscb4qv2pj6unng3rdqc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
