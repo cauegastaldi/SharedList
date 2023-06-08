@@ -1,9 +1,14 @@
 package br.edu.ifsp.sharedlist.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.*
+import android.view.ContextMenu.ContextMenuInfo
 import android.view.View.OnCreateContextMenuListener
+import android.widget.AdapterView
+import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.sharedlist.R
 import br.edu.ifsp.sharedlist.databinding.TileTaskBinding
@@ -15,6 +20,7 @@ class TaskRvAdapter(
     private val onTaskClickListener: OnTaskClickListener // objeto que implementa as ações de clique
 ): RecyclerView.Adapter<TaskRvAdapter.TaskViewHolder>() {
 
+    private var actualTask = null
     inner class TaskViewHolder(tileTaskBinding: TileTaskBinding) :
         RecyclerView.ViewHolder(tileTaskBinding.root), OnCreateContextMenuListener {
         val titleTv: TextView = tileTaskBinding.titleTv
@@ -29,32 +35,45 @@ class TaskRvAdapter(
         override fun onCreateContextMenu(
             menu: ContextMenu?,
             v: View?,
-            menuInfo: ContextMenu.ContextMenuInfo?
+            menuInfo: ContextMenuInfo?
         ) {
 
-            menu?.add(Menu.NONE, 0, 0, "Editar")?.setOnMenuItemClickListener {
-                if (taskPosition != -1) {
-                    onTaskClickListener.onEditMenuItemClick(taskPosition)
+            /*if (taskPosition != -1) {
+                val task = taskList[taskPosition]
+                /*if (task.isCompleted) {
+                    menu?.getItem(taskPosition)?.isEnabled = false
+                }*/
+
+                val info = menuInfo as AdapterContextMenuInfo
+
+                Log.v("task", task.isCompleted.toString())
+                Log.v("view", v?.isEnabled.toString())
+                Log.v("menuInfo", info.position.toString() )
+            }*/
+
+            val task = taskList[taskPosition]
+            if (!task.isCompleted) {
+                menu?.add(Menu.NONE, 0, 0, "Editar")?.setOnMenuItemClickListener {
+                    if (taskPosition != -1) {
+                        onTaskClickListener.onEditMenuItemClick(taskPosition)
+                    }
+                    true
                 }
-                true
-            }
-            menu?.add(Menu.NONE, 1, 1, "Remover")?.setOnMenuItemClickListener {
-                if (taskPosition != -1) {
-                    onTaskClickListener.onRemoveMenuItemClick(taskPosition)
+                menu?.add(Menu.NONE, 1, 1, "Remover")?.setOnMenuItemClickListener {
+                    if (taskPosition != -1) {
+                        onTaskClickListener.onRemoveMenuItemClick(taskPosition)
+                    }
+                    true
                 }
-                true
-            }
-            menu?.add(Menu.NONE, 1, 1, "Completar")?.setOnMenuItemClickListener {
-                if (taskPosition != -1) {
-                    onTaskClickListener.onCompleteMenuItemClick(taskPosition)
+                menu?.add(Menu.NONE, 1, 1, "Completar")?.setOnMenuItemClickListener {
+                    if (taskPosition != -1) {
+                        onTaskClickListener.onCompleteMenuItemClick(taskPosition)
+                    }
+                    true
                 }
-                true
             }
         }
-
-
     }
-
 
     // Chamada pela LayoutManager para buscar a quantidade de dados e preparar a quantidade de células.
     override fun getItemCount(): Int = taskList.size

@@ -58,22 +58,28 @@ class TaskActivity: BaseActivity() {
                 with(_receivedTask) {
                     titleEt.setText(title)
                     descriptionEt.setText(description)
-                    conclusionDateEt.setText(conclusionDate.toString())
+                    conclusionDateEt.setText(conclusionDate)
+                    userWhoCreatedTaskEt.setText(_receivedTask.userWhoCreated)
+                    userWhoCompletedTaskEt.setText(_receivedTask.userWhoCompleted)
                 }
             }
             val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
+
             with(atb) {
-                titleEt.isEnabled = !viewTask
+                titleEt.isEnabled = false
                 descriptionEt.isEnabled = !viewTask
-                if (receivedTask.isCompleted) {
+                conclusionDateEt.isEnabled = !viewTask
+                userWhoCreatedTaskEt.isEnabled = false
+
+                userWhoCreatedTaskTv.visibility = View.VISIBLE
+                userWhoCreatedTaskEt.visibility = View.VISIBLE
+
+                if (_receivedTask.isCompleted) {
                     expectedConclusionDateTv.visibility = View.INVISIBLE
                     conclusionDateTv.visibility = View.VISIBLE
                     userWhoCompletedTaskTv.visibility = View.VISIBLE
                     userWhoCompletedTaskEt.visibility = View.VISIBLE
-                    userWhoCreatedTaskTv.visibility = View.VISIBLE
-                    userWhoCreatedTaskEt.visibility = View.VISIBLE
                 }
-                conclusionDateEt.isEnabled = !viewTask
 
                 saveBt.visibility = if (viewTask) View.GONE else View.VISIBLE
             }
