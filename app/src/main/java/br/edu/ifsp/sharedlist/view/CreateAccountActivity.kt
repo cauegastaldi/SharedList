@@ -1,8 +1,11 @@
 package br.edu.ifsp.sharedlist.view
 
+import android.accounts.Account
 import android.os.Bundle
 import android.widget.Toast
+import br.edu.ifsp.scl.sharedlist.TaskValidator
 import br.edu.ifsp.sharedlist.databinding.ActivityCreateAccountBinding
+import br.edu.ifsp.sharedlist.validator.AccountValidator
 import com.google.firebase.auth.FirebaseAuth
 
 class CreateAccountActivity: BaseActivity() {
@@ -16,12 +19,13 @@ class CreateAccountActivity: BaseActivity() {
         setContentView(acab.root)
 
         acab.createAccountBt.setOnClickListener {
-            val email = acab.emailEt.text.toString()
-            val password = acab.passwordEt.text.toString()
-            val password2 = acab.repeatPasswordEt.text.toString()
 
-            if (password.equals(password2)) {
+            val formErrors = AccountValidator.getFormErrors(acab)
+            if (formErrors.isEmpty()) {
                 // Cria a conta no Firebase
+                val email = acab.emailEt.text.toString()
+                val password = acab.passwordEt.text.toString()
+
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnSuccessListener {
                     Toast.makeText(
                         this@CreateAccountActivity,
@@ -32,12 +36,13 @@ class CreateAccountActivity: BaseActivity() {
                 }.addOnFailureListener {
                     Toast.makeText(
                         this@CreateAccountActivity,
-                        "Erro na criação do usuário",
+                        it.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            } else {
-                Toast.makeText(this, "Senhas não coincidem", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(this, formErrors, Toast.LENGTH_SHORT).show()
             }
 
         }
