@@ -1,11 +1,9 @@
 package br.edu.ifsp.sharedlist.view
 
-import android.accounts.Account
 import android.os.Bundle
 import android.widget.Toast
-import br.edu.ifsp.scl.sharedlist.TaskValidator
 import br.edu.ifsp.sharedlist.databinding.ActivityCreateAccountBinding
-import br.edu.ifsp.sharedlist.validator.AccountValidator
+import br.edu.ifsp.sharedlist.validator.CreateAccountValidator
 import com.google.firebase.auth.FirebaseAuth
 
 class CreateAccountActivity: BaseActivity() {
@@ -20,7 +18,7 @@ class CreateAccountActivity: BaseActivity() {
 
         acab.createAccountBt.setOnClickListener {
 
-            val formErrors = AccountValidator.getFormErrors(acab)
+            val formErrors = CreateAccountValidator.getFormErrors(acab)
             if (formErrors.isEmpty()) {
                 // Cria a conta no Firebase
                 val email = acab.emailEt.text.toString()

@@ -20,7 +20,6 @@ class TaskRvAdapter(
     private val onTaskClickListener: OnTaskClickListener // objeto que implementa as ações de clique
 ): RecyclerView.Adapter<TaskRvAdapter.TaskViewHolder>() {
 
-    private var actualTask = null
     inner class TaskViewHolder(tileTaskBinding: TileTaskBinding) :
         RecyclerView.ViewHolder(tileTaskBinding.root), OnCreateContextMenuListener {
         val titleTv: TextView = tileTaskBinding.titleTv
@@ -38,19 +37,6 @@ class TaskRvAdapter(
             v: View?,
             menuInfo: ContextMenuInfo?
         ) {
-
-            /*if (taskPosition != -1) {
-                val task = taskList[taskPosition]
-                /*if (task.isCompleted) {
-                    menu?.getItem(taskPosition)?.isEnabled = false
-                }*/
-
-                val info = menuInfo as AdapterContextMenuInfo
-
-                Log.v("task", task.isCompleted.toString())
-                Log.v("view", v?.isEnabled.toString())
-                Log.v("menuInfo", info.position.toString() )
-            }*/
 
             val task = taskList[taskPosition]
             if (!task.isCompleted) {

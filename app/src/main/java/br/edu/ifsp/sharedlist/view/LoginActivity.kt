@@ -41,8 +41,8 @@ class LoginActivity : BaseActivity() {
         alb.loginBt.setOnClickListener {
             val formErrors = LoginValidator.getFormErrors(alb)
             if (formErrors.isEmpty()) {
-                val email = alb.emailEt.text.toString()
-                val password = alb.passwordEt.text.toString()
+                val email = alb.emailEt.text.toString().trim()
+                val password = alb.passwordEt.text.toString().trim()
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnSuccessListener {
                         Toast.makeText(
                             this,

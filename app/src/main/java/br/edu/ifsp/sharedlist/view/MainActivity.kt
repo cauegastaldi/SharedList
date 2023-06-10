@@ -148,11 +148,7 @@ class MainActivity : BaseActivity(), OnTaskClickListener {
 
     override fun onStart() {
         super.onStart()
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            val email = FirebaseAuth.getInstance().currentUser?.email
-            Toast.makeText(this, "Bem-vindo, ${email}", Toast.LENGTH_SHORT).show()
-        }
-        else {
+        if (FirebaseAuth.getInstance().currentUser == null) {
             Toast.makeText(this, "Não há usuário autenticado!", Toast.LENGTH_SHORT).show()
             finish()
         }
