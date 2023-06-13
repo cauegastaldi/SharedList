@@ -16,15 +16,31 @@ class ResetPasswordActivity: BaseActivity() {
         setContentView(arpb.root)
 
         arpb.sendEmailBt.setOnClickListener {
-            val email = arpb.recoveryPasswordEmailEt.text.toString()
-            FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener { resultado ->
-                if (resultado.isSuccessful) {
-                    Toast.makeText(this, "Email de recuperação enviado para $email", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-                else {
-                    Toast.makeText(this, "Falha no envio do email de recuperação", Toast.LENGTH_SHORT).show()
-                }
+            val email = arpb.recoveryPasswordEmailEt.text.toString().trim()
+            if (email.isNotEmpty()) {
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                    .addOnCompleteListener { resultado ->
+                        if (resultado.isSuccessful) {
+                            Toast.makeText(
+                                this,
+                                "Email de recuperação enviado para $email",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Falha no envio do email de recuperação",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Email não pode ser vazio",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

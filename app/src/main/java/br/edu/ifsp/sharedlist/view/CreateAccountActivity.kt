@@ -3,6 +3,7 @@ package br.edu.ifsp.sharedlist.view
 import android.os.Bundle
 import android.widget.Toast
 import br.edu.ifsp.sharedlist.databinding.ActivityCreateAccountBinding
+import br.edu.ifsp.sharedlist.model.UserDaoRtDbFb
 import br.edu.ifsp.sharedlist.validator.CreateAccountValidator
 import com.google.firebase.auth.FirebaseAuth
 
@@ -10,6 +11,10 @@ class CreateAccountActivity: BaseActivity() {
 
     private val acab: ActivityCreateAccountBinding by lazy {
         ActivityCreateAccountBinding.inflate(layoutInflater)
+    }
+
+    private val userDaoRtDbFb: UserDaoRtDbFb by lazy {
+        UserDaoRtDbFb(null)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +35,7 @@ class CreateAccountActivity: BaseActivity() {
                         "Usuário $email criado com sucesso!",
                         Toast.LENGTH_SHORT
                     ).show()
+                    userDaoRtDbFb.registerLastSignedUser(FirebaseAuth.getInstance().currentUser!!.email!!)
                     finish()
                 }.addOnFailureListener {
                     Toast.makeText(

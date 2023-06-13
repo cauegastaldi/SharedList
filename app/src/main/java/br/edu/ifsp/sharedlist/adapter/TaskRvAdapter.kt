@@ -25,7 +25,6 @@ class TaskRvAdapter(
         val titleTv: TextView = tileTaskBinding.titleTv
         val descriptionTv: TextView = tileTaskBinding.descriptionTv
         val expectedConclusionDateTv: TextView = tileTaskBinding.expectedConclusionDateTv
-        val conclusionDateTv: TextView = tileTaskBinding.conclusionDateTv
         val completedTv: TextView = tileTaskBinding.completedTv
         var taskPosition = -1
         init {
@@ -88,16 +87,8 @@ class TaskRvAdapter(
         // Altera os valores da célula
         holder.titleTv.text = task.title
         holder.descriptionTv.text = context.getString(R.string.description_tile_task, task.description)
-        if (task.isCompleted) {
-            holder.conclusionDateTv.visibility = View.VISIBLE
-            holder.expectedConclusionDateTv.visibility = View.GONE
-            holder.conclusionDateTv.text =
-                context.getString(R.string.conclusion_date_tile_task, task.conclusionDate)
-        }
-        else {
-            holder.expectedConclusionDateTv.text =
-                context.getString(R.string.expected_conclusion_date_tile_task, task.conclusionDate)
-        }
+        holder.expectedConclusionDateTv.text =
+            context.getString(R.string.expected_conclusion_date_tile_task, task.conclusionDate)
         holder.completedTv.text = context.getString(R.string.completed, taskCompletedText)
         holder.taskPosition = position
 

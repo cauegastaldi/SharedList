@@ -139,7 +139,6 @@ class MainActivity : BaseActivity(), OnTaskClickListener {
         val task = taskList[position]
         task.isCompleted = true
         task.userWhoCompleted = FirebaseAuth.getInstance().currentUser!!.email
-        task.conclusionDate = DateConverter.convertLocalDateToDateInBrazilianFormat(LocalDate.now())
         taskController.editTask(task)
         taskList[position] = task
         taskAdapter.notifyDataSetChanged()

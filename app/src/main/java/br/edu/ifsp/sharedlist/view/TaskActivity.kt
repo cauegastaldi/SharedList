@@ -61,6 +61,7 @@ class TaskActivity: BaseActivity() {
                     conclusionDateEt.setText(conclusionDate)
                     userWhoCreatedTaskEt.setText(_receivedTask.userWhoCreated)
                     userWhoCompletedTaskEt.setText(_receivedTask.userWhoCompleted)
+                    creationDateEt.setText(_receivedTask.creationDate)
                 }
             }
             val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
@@ -70,13 +71,14 @@ class TaskActivity: BaseActivity() {
                 descriptionEt.isEnabled = !viewTask
                 conclusionDateEt.isEnabled = !viewTask
                 userWhoCreatedTaskEt.isEnabled = false
+                creationDateEt.isEnabled = false
 
                 userWhoCreatedTaskTv.visibility = View.VISIBLE
                 userWhoCreatedTaskEt.visibility = View.VISIBLE
+                creationDateTv.visibility = View.VISIBLE
+                creationDateEt.visibility = View.VISIBLE
 
                 if (_receivedTask.isCompleted) {
-                    expectedConclusionDateTv.visibility = View.INVISIBLE
-                    conclusionDateTv.visibility = View.VISIBLE
                     userWhoCompletedTaskTv.visibility = View.VISIBLE
                     userWhoCompletedTaskEt.visibility = View.VISIBLE
                 }
@@ -99,8 +101,10 @@ class TaskActivity: BaseActivity() {
                     val title = titleEt.text.toString().trim()
                     val description = descriptionEt.text.toString().trim()
                     val conclusionDate = conclusionDateEt.text.toString()
-                    val creationDate = DateConverter.convertLocalDateToDateInBrazilianFormat(LocalDate.now())
-                    val user = FirebaseAuth.getInstance().currentUser!!.email!!
+
+                    val creationDate =
+                        receivedTask?.creationDate ?: DateConverter.convertLocalDateToDateInBrazilianFormat(LocalDate.now())
+                    val user = receivedTask?.userWhoCreated ?: FirebaseAuth.getInstance().currentUser!!.email!!
                     val task = Task(
                         id = id,
                         title = title,
