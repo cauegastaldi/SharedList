@@ -1,6 +1,5 @@
 package br.edu.ifsp.sharedlist.model
 
-import br.edu.ifsp.sharedlist.view.CreateAccountActivity
 import br.edu.ifsp.sharedlist.view.LoginActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,14 +22,15 @@ class UserDaoRtDbFb(private val loginActivity: LoginActivity?) {
             userRtDbFbReference.child(LAST_SIGNED_USER_NODE)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        val lastSignedUserEmail = snapshot.value as String
+
+                        val lastSignedUserEmail = snapshot.value?.toString() ?: ""
                         loginActivity?.runOnUiThread {
                             loginActivity.updateEmailField(lastSignedUserEmail)
                         }
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
+                        //NSA
                     }
                 })
         }.start()
