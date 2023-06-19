@@ -4,7 +4,6 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import br.edu.ifsp.scl.sharedlist.TaskValidator
@@ -13,13 +12,8 @@ import br.edu.ifsp.sharedlist.databinding.ActivityTaskBinding
 import br.edu.ifsp.sharedlist.model.Task
 import br.edu.ifsp.sharedlist.utils.DateConverter
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import java.security.SecureRandom
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Calendar
-import java.util.UUID
-import kotlin.random.Random
+import java.util.*
 
 class TaskActivity: BaseActivity() {
 
@@ -38,7 +32,6 @@ class TaskActivity: BaseActivity() {
             val month = c.get(Calendar.MONTH)
             val year = c.get(Calendar.YEAR)
             DatePickerDialog(this@TaskActivity, { view, selectedYear, selectedMonth, selectedDay ->
-                Log.v("actual date", DateConverter.convertLocalDateToDateInBrazilianFormat(LocalDate.now()))
                 val date =
                     DateConverter.convertLocalDateToDateInBrazilianFormat(
                         LocalDate.of(selectedYear, selectedMonth + 1, selectedDay)
