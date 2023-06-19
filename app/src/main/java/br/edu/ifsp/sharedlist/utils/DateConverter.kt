@@ -1,6 +1,5 @@
 package br.edu.ifsp.sharedlist.utils
 
-import android.util.Log
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -11,7 +10,6 @@ class DateConverter {
 
         fun convertDateInBrazilianFormatToLocalDate(date: String): LocalDate {
             val formattedDate = date.format(formatter)
-            Log.v("data", formattedDate)
             return LocalDate.parse(formattedDate, formatter)
         }
 
